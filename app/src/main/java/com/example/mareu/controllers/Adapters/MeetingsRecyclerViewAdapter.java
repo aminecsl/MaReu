@@ -45,7 +45,7 @@ public class MeetingsRecyclerViewAdapter extends RecyclerView.Adapter<MeetingsRe
     public void onBindViewHolder(final ViewHolder holder, int position) {
         Meeting meeting = mMeetings.get(position);
         holder.mMeetingRoom.setText(meeting.getRoom());
-        holder.mMeetingSubject.setText(meeting.getRoom());
+        holder.mMeetingSubject.setText(meeting.getSubject());
 
     }
 
@@ -59,7 +59,7 @@ public class MeetingsRecyclerViewAdapter extends RecyclerView.Adapter<MeetingsRe
         return mMeetings.size();
     }
 
-    /* Modélise en un objet View view la vue XML (fragment_neighbour) de notre ligne représentant un voisin*/
+    /* Modélise en un objet View view la vue XML (fragment_meeting) de notre ligne représentant une réunion*/
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.meeting_item_txt_1) public TextView mMeetingRoom;

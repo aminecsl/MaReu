@@ -28,7 +28,7 @@ public class MeetingFragment extends Fragment {
 
     private MeetingApiService mApiService;
     private List<Meeting> mMeetings;
-    RecyclerView mRecyclerView;
+    private RecyclerView mRecyclerView;
 
 
     public MeetingFragment() {
@@ -47,18 +47,25 @@ public class MeetingFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mApiService = DI.getMeetingApiService();
+        mMeetings = mApiService.getMeetings();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_meeting, container, false);
+        View view = inflater.inflate(R.layout.fragment_meetings_list, container, false);
         Context context = view.getContext();
         mRecyclerView = (RecyclerView) view;
         mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
-        initList();
         return view;
+    }
+
+    //On a déplacé initList dans onResume() de façon à regénérer (rafraîchir) nos listes en (re)venant sur la Main Activity
+    @Override
+    public void onResume() {
+        super.onResume();
+        initList();
     }
 
 

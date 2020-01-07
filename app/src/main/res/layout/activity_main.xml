@@ -29,19 +29,14 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/activity_main_rv"
-        android:layout_width="0dp"
+    <FrameLayout
+        android:id="@+id/frame_layout_main"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/activity_main_toolbar"
-        app:layoutManager="LinearLayoutManager"
-        tools:context=".controllers.Activities.MainActivity"
-        tools:listitem="@layout/fragment_meeting" />
+        app:layout_constraintTop_toBottomOf="@+id/activity_main_toolbar" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
