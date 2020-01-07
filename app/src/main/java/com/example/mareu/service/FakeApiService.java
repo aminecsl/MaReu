@@ -14,11 +14,13 @@ public class FakeApiService implements MeetingApiService {
 
     @Override
     public List<Meeting> getMeetings() {
+
         return meetings;
     }
 
     @Override
     public void deleteMeeting(Meeting meeting) {
+
         meetings.remove(meeting);
     }
 }
