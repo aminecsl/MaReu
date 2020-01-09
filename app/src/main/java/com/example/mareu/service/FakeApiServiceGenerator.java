@@ -1,6 +1,7 @@
 package com.example.mareu.service;
 
 import com.example.mareu.model.Meeting;
+import com.example.mareu.model.MeetingRoom;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,6 +12,11 @@ import java.util.List;
  */
 public abstract class FakeApiServiceGenerator {
 
+    public static MeetingRoom mRoom1 = new MeetingRoom(1, "A");
+    public static MeetingRoom mRoom2 = new MeetingRoom(2, "B");
+    public static MeetingRoom mRoom3 = new MeetingRoom(3, "C");
+    public static MeetingRoom mRoom4 = new MeetingRoom(4, "D");
+
     static List<Meeting> generateMeetings() {
         return new ArrayList<>(FAKE_MEETINGS);
     }
@@ -18,9 +24,9 @@ public abstract class FakeApiServiceGenerator {
     public static List<Meeting> FAKE_MEETINGS = Arrays.asList(
 
         new Meeting(
-                "27/01/2020",
+                mRoom3,
+                "23/01/2020",
                 "10:00",
-                "Salle C",
                 "Grève",
                 Arrays.asList("paul@lamzone.com",
                         "julie@lamzone.com",
@@ -29,10 +35,10 @@ public abstract class FakeApiServiceGenerator {
         ),
 
         new Meeting(
+                mRoom1,
                 "29/01/2020",
-                        "14:00",
-                        "Salle A",
-                        "Congés",
+                "14:00",
+                "Congés",
                 Arrays.asList("luc@lamzone.com",
                         "laura@lamzone.com",
                         "robert@lamzone.com",
@@ -40,10 +46,10 @@ public abstract class FakeApiServiceGenerator {
         ),
 
         new Meeting(
-                    "02/02/2020",
-                            "11:00",
-                            "Salle D",
-                            "Release",
+                    mRoom4,
+                "07/02/2020",
+                "12:30",
+                "Release",
                     Arrays.asList("antoine@lamzone.com",
                             "pierre@lamzone.com",
                             "sophie@lamzone.com",
@@ -51,15 +57,25 @@ public abstract class FakeApiServiceGenerator {
         ),
 
         new Meeting(
-                    "07/02/2020",
-                            "16:00",
-                            "Salle E",
-                            "Résultats",
+                    mRoom2,
+                "11/02/202",
+                "15:00",
+                "Résultats",
                     Arrays.asList("nicole@lamzone.com",
                             "henri@lamzone.com",
                             "eric@lamzone.com",
                             "thomas@lamzone.com")
-        )
+        ),
 
+        new Meeting(
+                    mRoom1,
+                "19/02/2020",
+                "16:15",
+                "Embauche",
+                    Arrays.asList("valerie@lamzone.com",
+                            "chloe@lamzone.com",
+                            "etienne@lamzone.com",
+                            "herve@lamzone.com")
+            )
     );
 }

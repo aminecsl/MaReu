@@ -12,17 +12,17 @@ public class Meeting {
     private static int count = 0;
 
     private int id;
+    private MeetingRoom mMeetingRoom;
     private String mDate;
     private String mTime;
-    private String mRoom;
     private String mSubject;
     private List<String> mEmails;
 
-    public Meeting (String date, String time, String room, String subject, List<String> emails) {
+    public Meeting (MeetingRoom meetingRoom, String date, String time, String subject, List<String> emails) {
 
+        mMeetingRoom = meetingRoom;
         mDate = date;
         mTime = time;
-        mRoom = room;
         mSubject = subject;
         mEmails = emails;
         id = count++;
@@ -52,12 +52,16 @@ public class Meeting {
         mTime = time;
     }
 
-    public String getRoom() {
-        return mRoom;
+    public int getMeetingRoomColor() {
+        return mMeetingRoom.getRoomColor();
     }
 
-    public void setRoom(String room) {
-        mRoom = room;
+    public void setMeetingRoom(MeetingRoom room) {
+        mMeetingRoom = room;
+    }
+
+    public String getMeetingRoomName() {
+        return mMeetingRoom.getRoomName();
     }
 
     public String getSubject() {
