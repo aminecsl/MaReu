@@ -46,7 +46,7 @@ public class MeetingFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mApiService = DI.getNewInstanceApiService();
+        mApiService = DI.getMeetingApiService();
         mMeetings = mApiService.getMeetings();
     }
 

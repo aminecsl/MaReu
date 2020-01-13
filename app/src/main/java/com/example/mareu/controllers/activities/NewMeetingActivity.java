@@ -6,18 +6,23 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.text.InputType;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.Spinner;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.example.mareu.R;
+import com.example.mareu.di.DI;
+import com.example.mareu.model.Meeting;
+import com.example.mareu.model.MeetingRoom;
+import com.example.mareu.service.FakeApiServiceGenerator;
+import com.example.mareu.service.MeetingApiService;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 
@@ -28,7 +33,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class NewMeetingActivity extends AppCompatActivity {
+public class NewMeetingActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     @BindView(R.id.activity_meeting_emails_input) public EditText mEmailsInput;
     @BindView(R.id.activity_meeting_add_chip_btn) public Button mAddChipTagBtn;
@@ -37,6 +42,11 @@ public class NewMeetingActivity extends AppCompatActivity {
     @BindView(R.id.new_meeting_subject_input) public EditText mSubjectInput;
     @BindView(R.id.new_meeting_date_input) public EditText mDateInput;
     @BindView(R.id.new_meeting_time_input) public EditText mTimeInput;
+    @BindView(R.id.rooms_spinner) public Spinner mSpinner;
+
+    private List<MeetingRoom> mMeetingRoomsList = FakeApiServiceGenerator.MEETING_ROOMS;
+    List<String> roomsNames = new ArrayList<>();
+    MeetingRoom chosenRoom;
 
 
     @Override
@@ -67,6 +77,8 @@ public class NewMeetingActivity extends AppCompatActivity {
                 displayChipTag();
             }
         });
+
+        configureAndShowRoomSpinner();
 
         mSaveNewMeetingBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,8 +132,43 @@ public class NewMeetingActivity extends AppCompatActivity {
         });
     }
 
+    public void configureAndShowRoomSpinner() {
+
+        for (MeetingRoom room : mMeetingRoomsList) {
+            roomsNames.add("Salle " + room.getRoomName());
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, roomsNames);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mSpinner.setAdapter(adapter);
+        mSpinner.setOnItemSelectedListener(this);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> arg0, View arg1, int position,long id) {
+        chosenRoom = mMeetingRoomsList.get(position);
+    }
+    @Override
+    public void onNothingSelected(AdapterView<?> arg0) {
+        /*
+         *Custom Code
+         */
+    }
+
+
     public void addNewMeeting(){
-        generateEmailsList();
+        List<String> finalEmailsList = generateEmailsList();
+        Meeting newMeeting = new Meeting(
+                chosenRoom,
+                mDateInput.getText().toString(),
+                mTimeInput.getText().toString(),
+                mSubjectInput.getText().toString(),
+                finalEmailsList
+        );
+        MeetingApiService mApiService = DI.getMeetingApiService();
+        mApiService.addMeeting(newMeeting);
+        finish();
+
     }
 
     public List<String> generateEmailsList(){
@@ -130,7 +177,6 @@ public class NewMeetingActivity extends AppCompatActivity {
             Chip chip = (Chip) mChipGroup.getChildAt(i);
             emailsList.add(chip.getText().toString());
         }
-        System.out.println(emailsList);
         return emailsList;
     }
 }

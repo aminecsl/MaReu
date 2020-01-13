@@ -118,6 +118,26 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/spinner_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_below="@id/emails_container">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Salle de réunion :"
+                    android:textSize="20sp"/>
+
+                <Spinner
+                    android:id="@+id/rooms_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
         </RelativeLayout>
 
         <LinearLayout

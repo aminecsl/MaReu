@@ -93,4 +93,15 @@ public class Meeting {
     public int hashCode() {
         return Objects.hash(id);
     }
+
+    @Override
+    public String toString() {
+        return "Meeting{" +
+                "mMeetingRoom=" + mMeetingRoom +
+                ", mDate='" + mDate + '\'' +
+                ", mTime='" + mTime + '\'' +
+                ", mSubject='" + mSubject + '\'' +
+                ", mEmails=" + mEmails +
+                '}';
+    }
 }

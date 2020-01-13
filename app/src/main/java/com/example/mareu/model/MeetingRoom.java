@@ -76,4 +76,12 @@ public class MeetingRoom {
         return color;
     }
 
+    @Override
+    public String toString() {
+        return "MeetingRoom{" +
+                "mRoomNumber=" + mRoomNumber +
+                ", mRoomName='" + mRoomName + '\'' +
+                ", mRoomColor=" + mRoomColor +
+                '}';
+    }
 }

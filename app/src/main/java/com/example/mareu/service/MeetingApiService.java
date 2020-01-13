@@ -16,6 +16,13 @@ public interface MeetingApiService {
     List<Meeting> getMeetings();
 
     /**
+     * Adds a meeting
+     * @param meeting
+     */
+
+    void addMeeting (Meeting meeting);
+
+    /**
      * Deletes a meeting
      * @param meeting
      */

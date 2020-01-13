@@ -36,7 +36,7 @@ public abstract class FakeApiServiceGenerator {
     public static List<Meeting> FAKE_MEETINGS = Arrays.asList(
 
         new Meeting(
-                mRoom3,
+                MEETING_ROOMS.get(2),
                 "23/01/2020",
                 "10:00",
                 "Grève",
@@ -47,7 +47,7 @@ public abstract class FakeApiServiceGenerator {
         ),
 
         new Meeting(
-                mRoom1,
+                MEETING_ROOMS.get(0),
                 "29/01/2020",
                 "14:00",
                 "Congés",
@@ -58,7 +58,7 @@ public abstract class FakeApiServiceGenerator {
         ),
 
         new Meeting(
-                    mRoom4,
+                MEETING_ROOMS.get(3),
                 "07/02/2020",
                 "12:30",
                 "Release",
@@ -69,7 +69,7 @@ public abstract class FakeApiServiceGenerator {
         ),
 
         new Meeting(
-                    mRoom2,
+                MEETING_ROOMS.get(1),
                 "11/02/202",
                 "15:00",
                 "Résultats",
@@ -80,7 +80,7 @@ public abstract class FakeApiServiceGenerator {
         ),
 
         new Meeting(
-                    mRoom1,
+                MEETING_ROOMS.get(0),
                 "19/02/2020",
                 "16:15",
                 "Embauche",
