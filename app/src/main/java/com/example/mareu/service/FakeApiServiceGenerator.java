@@ -12,6 +12,7 @@ import java.util.List;
  */
 public abstract class FakeApiServiceGenerator {
 
+    //TODO : mettre mes salles de réunions dans une liste
     public static MeetingRoom mRoom1 = new MeetingRoom(1, "A");
     public static MeetingRoom mRoom2 = new MeetingRoom(2, "B");
     public static MeetingRoom mRoom3 = new MeetingRoom(3, "C");

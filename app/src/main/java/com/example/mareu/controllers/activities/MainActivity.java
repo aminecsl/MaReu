@@ -1,23 +1,41 @@
-package com.example.mareu.controllers.Activities;
+package com.example.mareu.controllers.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.mareu.R;
-import com.example.mareu.controllers.Fragments.MeetingFragment;
+import com.example.mareu.controllers.fragments.MeetingFragment;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
 
     private MeetingFragment meetingFragment;
 
+    @BindView(R.id.floatingActionButton) public FloatingActionButton mFloatingActionButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
         this.configureAndShowMainFragment();
+
+        mFloatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent (MainActivity.this, NewMeetingActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
 

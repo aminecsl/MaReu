@@ -1,4 +1,4 @@
-package com.example.mareu.controllers.Adapters;
+package com.example.mareu.controllers.adapters;
 
 import android.graphics.drawable.GradientDrawable;
 import android.view.LayoutInflater;

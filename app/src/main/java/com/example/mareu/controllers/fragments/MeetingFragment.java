@@ -1,4 +1,4 @@
-package com.example.mareu.controllers.Fragments;
+package com.example.mareu.controllers.fragments;
 
 
 import android.content.Context;
@@ -14,7 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.mareu.R;
-import com.example.mareu.controllers.Adapters.MeetingsRecyclerViewAdapter;
+import com.example.mareu.controllers.adapters.MeetingsRecyclerViewAdapter;
 import com.example.mareu.di.DI;
 import com.example.mareu.model.Meeting;
 import com.example.mareu.service.MeetingApiService;
@@ -46,7 +46,7 @@ public class MeetingFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mApiService = DI.getMeetingApiService();
+        mApiService = DI.getNewInstanceApiService();
         mMeetings = mApiService.getMeetings();
     }
 
