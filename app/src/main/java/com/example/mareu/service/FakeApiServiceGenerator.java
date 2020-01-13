@@ -12,11 +12,22 @@ import java.util.List;
  */
 public abstract class FakeApiServiceGenerator {
 
-    //TODO : mettre mes salles de réunions dans une liste
-    public static MeetingRoom mRoom1 = new MeetingRoom(1, "A");
-    public static MeetingRoom mRoom2 = new MeetingRoom(2, "B");
-    public static MeetingRoom mRoom3 = new MeetingRoom(3, "C");
-    public static MeetingRoom mRoom4 = new MeetingRoom(4, "D");
+
+    public static List<MeetingRoom> MEETING_ROOMS = Arrays.asList(
+
+            new MeetingRoom(1, "A"),
+            new MeetingRoom(2, "B"),
+            new MeetingRoom(3, "C"),
+            new MeetingRoom(4, "D"),
+            new MeetingRoom(5, "E"),
+            new MeetingRoom(6, "F"),
+            new MeetingRoom(7, "G"),
+            new MeetingRoom(8, "H"),
+            new MeetingRoom(9, "I"),
+            new MeetingRoom(10, "J")
+    );
+
+
 
     static List<Meeting> generateMeetings() {
         return new ArrayList<>(FAKE_MEETINGS);
