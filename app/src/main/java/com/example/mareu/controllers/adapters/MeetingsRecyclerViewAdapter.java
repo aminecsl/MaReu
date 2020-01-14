@@ -4,12 +4,16 @@ import android.graphics.drawable.GradientDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mareu.R;
+import com.example.mareu.events.DeleteMeetingEvent;
 import com.example.mareu.model.Meeting;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
@@ -52,6 +56,13 @@ public class MeetingsRecyclerViewAdapter extends RecyclerView.Adapter<MeetingsRe
         holder.mMeetingEmails.setText(String.join(", ", meeting.getEmails()));
 
         ((GradientDrawable) holder.mMeetingIconRoom.getBackground()).setColor(meeting.getMeetingRoomColor());
+
+        holder.mDeleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EventBus.getDefault().post(new DeleteMeetingEvent(meeting));
+            }
+        });
     }
 
 
@@ -72,6 +83,7 @@ public class MeetingsRecyclerViewAdapter extends RecyclerView.Adapter<MeetingsRe
         @BindView(R.id.meeting_date_txt) public TextView mMeetingDate;
         @BindView(R.id.meeting_time_txt) public TextView mMeetingTime;
         @BindView(R.id.meeting_emails_txt) public TextView mMeetingEmails;
+        @BindView(R.id.meeting_delete_btn) public ImageButton mDeleteBtn;
 
 
         public ViewHolder(View view) {

@@ -119,17 +119,21 @@ public class NewMeetingActivity extends AppCompatActivity implements AdapterView
 
     public void displayChipTag(){
         String chipTag = mEmailsInput.getText().toString();
-        LayoutInflater inflater = LayoutInflater.from(NewMeetingActivity.this);
-        Chip chip = (Chip) inflater.inflate(R.layout.chip_item, null, false);
-        chip.setText(chipTag);
-        mChipGroup.addView(chip);
-        mEmailsInput.getText().clear();
-        chip.setOnCloseIconClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mChipGroup.removeView(v);
-            }
-        });
+        if (isValidEmail(chipTag)) {
+            LayoutInflater inflater = LayoutInflater.from(NewMeetingActivity.this);
+            Chip chip = (Chip) inflater.inflate(R.layout.chip_item, null, false);
+            chip.setText(chipTag);
+            mChipGroup.addView(chip);
+            mEmailsInput.getText().clear();
+            chip.setOnCloseIconClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mChipGroup.removeView(v);
+                }
+            });
+        }else {
+            Toast.makeText(this, "Email non conforme", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void configureAndShowRoomSpinner() {
@@ -178,4 +182,10 @@ public class NewMeetingActivity extends AppCompatActivity implements AdapterView
         }
         return emailsList;
     }
+
+    public boolean isValidEmail(String email) {
+        String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+        return email.matches(regex);
+    }
+
 }

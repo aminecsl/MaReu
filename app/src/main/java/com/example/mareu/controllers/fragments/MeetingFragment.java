@@ -16,8 +16,12 @@ import android.view.ViewGroup;
 import com.example.mareu.R;
 import com.example.mareu.controllers.adapters.MeetingsRecyclerViewAdapter;
 import com.example.mareu.di.DI;
+import com.example.mareu.events.DeleteMeetingEvent;
 import com.example.mareu.model.Meeting;
 import com.example.mareu.service.MeetingApiService;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.List;
 
@@ -75,7 +79,27 @@ public class MeetingFragment extends Fragment {
 
         mMeetings = mApiService.getMeetings();
         mRecyclerView.setAdapter(new MeetingsRecyclerViewAdapter(mMeetings));
+    }
 
+    //Le fragment s'enregistre en tant que receveur d'un event auprès de EventBus
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    //Le fragment doit se désinscrire en tant que receveur auprès de EventBus
+    @Override
+    public void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe
+    public void onDeleteMeeting(DeleteMeetingEvent event) {
+
+        mApiService.deleteMeeting(event.meeting);
+        initList();
     }
 
 }
