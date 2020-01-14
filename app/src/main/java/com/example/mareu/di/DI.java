@@ -9,7 +9,7 @@ import com.example.mareu.service.MeetingApiService;
 public class DI {
 
 
-    private static MeetingApiService service = new FakeApiService();
+    private static MeetingApiService service;
 
     /**
      * Get an instance on @{@link MeetingApiService}
@@ -27,6 +27,7 @@ public class DI {
      */
     public static MeetingApiService getNewInstanceApiService() {
 
-        return new FakeApiService();
+        service = new FakeApiService();
+        return service;
     }
 }

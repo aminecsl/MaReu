@@ -29,7 +29,7 @@ public class MeetingsRecyclerViewAdapter extends RecyclerView.Adapter<MeetingsRe
         mMeetings = items;
     }
 
-    /* Crée un ViewHolder à partir du layout XML représentant chaque ligne de la RecyclerView.
+    /* 1. Crée un ViewHolder à partir du layout XML représentant chaque ligne de la RecyclerView.
      * Celle-ci est appelée pour les premières lignes visibles à l'écran de la RecyclerView.*/
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -39,7 +39,7 @@ public class MeetingsRecyclerViewAdapter extends RecyclerView.Adapter<MeetingsRe
     }
 
 
-    /* Appelée pour chacune des lignes visibles affichées de notre RecyclerView.
+    /* 3. Appelée pour chacune des lignes visibles affichées de notre RecyclerView.
      * C'est généralement ici que l'on met à jour leur apparence.
      */
     @Override
@@ -52,7 +52,6 @@ public class MeetingsRecyclerViewAdapter extends RecyclerView.Adapter<MeetingsRe
         holder.mMeetingEmails.setText(String.join(", ", meeting.getEmails()));
 
         ((GradientDrawable) holder.mMeetingIconRoom.getBackground()).setColor(meeting.getMeetingRoomColor());
-
     }
 
 
@@ -65,7 +64,7 @@ public class MeetingsRecyclerViewAdapter extends RecyclerView.Adapter<MeetingsRe
         return mMeetings.size();
     }
 
-    /* Modélise en un objet View view la vue XML (fragment_meeting) de notre ligne représentant une réunion*/
+    /* 2. Modélise en un objet View view la vue XML (fragment_meeting) de notre ligne représentant une réunion*/
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.meeting_icon_room) public TextView mMeetingIconRoom;

@@ -20,13 +20,13 @@ public interface MeetingApiService {
      * @param meeting
      */
 
-    void addMeeting (Meeting meeting);
+    void addMeeting(Meeting meeting);
 
     /**
      * Deletes a meeting
      * @param meeting
      */
 
-    void deleteMeeting (Meeting meeting);
+    void deleteMeeting(Meeting meeting);
 
 }

@@ -46,8 +46,7 @@ public class MeetingFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mApiService = DI.getMeetingApiService();
-        mMeetings = mApiService.getMeetings();
+        mApiService = DI.getNewInstanceApiService();
     }
 
     @Override
@@ -74,6 +73,7 @@ public class MeetingFragment extends Fragment {
      */
     private void initList() {
 
+        mMeetings = mApiService.getMeetings();
         mRecyclerView.setAdapter(new MeetingsRecyclerViewAdapter(mMeetings));
 
     }

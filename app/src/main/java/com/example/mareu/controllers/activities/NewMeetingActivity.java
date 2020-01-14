@@ -168,7 +168,6 @@ public class NewMeetingActivity extends AppCompatActivity implements AdapterView
         MeetingApiService mApiService = DI.getMeetingApiService();
         mApiService.addMeeting(newMeeting);
         finish();
-
     }
 
     public List<String> generateEmailsList(){
