@@ -97,7 +97,17 @@ public class NewMeetingActivity extends AppCompatActivity implements AdapterView
                 new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                        mDateInput.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+
+                        int month = monthOfYear + 1;
+                        String formattedMonth = "" + month;
+                        String formattedDayOfMonth = "" + dayOfMonth;
+                        if(month < 10){
+                            formattedMonth = "0" + month;
+                        }
+                        if(dayOfMonth < 10){
+                            formattedDayOfMonth = "0" + dayOfMonth;
+                        }
+                        mDateInput.setText(formattedDayOfMonth + "/" + formattedMonth + "/" + year);
                     }
                 }, year, month, day);
         datePicker.show();
@@ -111,7 +121,15 @@ public class NewMeetingActivity extends AppCompatActivity implements AdapterView
                 new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker tp, int sHour, int sMinute) {
-                        mTimeInput.setText(sHour + ":" + sMinute);
+                        String formattedHour = "" + sHour;
+                        String formattedMinute = "" + sMinute;
+                        if(sHour < 10){
+                            formattedHour = "0" + sHour;
+                        }
+                        if(sMinute < 10){
+                            formattedMinute = "0" + sMinute;
+                        }
+                        mTimeInput.setText(formattedHour + ":" + formattedMinute);
                     }
                 }, hour, minutes, true);
         timePicker.show();

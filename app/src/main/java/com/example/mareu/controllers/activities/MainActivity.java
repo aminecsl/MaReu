@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    
+
 
     //Ajoute les entrées de notre menu à la toolbar
     @Override
