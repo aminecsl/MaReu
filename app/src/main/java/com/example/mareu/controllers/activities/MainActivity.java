@@ -130,9 +130,7 @@ public class MainActivity extends AppCompatActivity {
         mDialogDatesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id)
             {
-                Object item = parent.getItemAtPosition(pos);
-
-                System.out.println("Dates spinner works...   ");
+                filteredDate = plannedMeetingDates.get(pos);
 
             }
 
@@ -154,9 +152,7 @@ public class MainActivity extends AppCompatActivity {
         mDialogRoomsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id)
             {
-                Object item = parent.getItemAtPosition(pos);
-
-                System.out.println("Rooms spinner works...   ");
+                filteredRoom = bookedRoomsNames.get(pos);
 
             }
 

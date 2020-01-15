@@ -3,6 +3,7 @@ package com.example.mareu.service;
 import com.example.mareu.model.Meeting;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -37,7 +38,7 @@ public class FakeApiService implements MeetingApiService {
 
         List<Meeting> filteredMeetings = new ArrayList<>();
 
-        if (date != null && roomName != null) {
+        if (date != "toutes dates" && roomName != "toutes salles") {
             for (Meeting meeting : meetings) {
                 if (meeting.getDate().equals(date) && meeting.getMeetingRoomName().equals(roomName)) {
                     filteredMeetings.add(meeting);
@@ -45,7 +46,7 @@ public class FakeApiService implements MeetingApiService {
             }
         }
 
-        if (date == null || roomName == null) {
+        if (date == "toutes dates" || roomName == "toutes salles") {
             for (Meeting meeting : meetings) {
                 if (meeting.getDate().equals(date) || meeting.getMeetingRoomName().equals(roomName)) {
                     filteredMeetings.add(meeting);
@@ -63,6 +64,7 @@ public class FakeApiService implements MeetingApiService {
             plannedMeetingDatesList.add(meeting.getDate());
         }
         List<String> listDistinct = plannedMeetingDatesList.stream().distinct().collect(Collectors.toList());
+        listDistinct.add(0, "toutes dates");
         return listDistinct;
     }
 
@@ -73,6 +75,7 @@ public class FakeApiService implements MeetingApiService {
             bookedRoomsList.add(meeting.getMeetingRoomName());
         }
         List<String> listDistinct = bookedRoomsList.stream().distinct().collect(Collectors.toList());
+        listDistinct.add(0, "toutes salles");
         return listDistinct;
     }
 }
