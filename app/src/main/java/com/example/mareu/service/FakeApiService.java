@@ -1,10 +1,10 @@
 package com.example.mareu.service;
 
 import com.example.mareu.model.Meeting;
-import com.example.mareu.model.MeetingRoom;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by Amine K. on 06/01/20.
@@ -33,26 +33,36 @@ public class FakeApiService implements MeetingApiService {
     }
 
     @Override
-    public List<Meeting> getFilteredMeetingsList(String date, MeetingRoom room) {
+    public List<Meeting> getFilteredMeetingsList(String date, String roomName) {
 
         List<Meeting> filteredMeetings = new ArrayList<>();
 
-        if (date != null && room != null) {
+        if (date != null && roomName != null) {
             for (Meeting meeting : meetings) {
-                if (meeting.getDate().equals(date) && meeting.getMeetingRoom().equals(room)) {
+                if (meeting.getDate().equals(date) && meeting.getMeetingRoomName().equals(roomName)) {
                     filteredMeetings.add(meeting);
                 }
             }
         }
 
-        if (date == null || room == null) {
+        if (date == null || roomName == null) {
             for (Meeting meeting : meetings) {
-                if (meeting.getDate().equals(date) || meeting.getMeetingRoom().equals(room)) {
+                if (meeting.getDate().equals(date) || meeting.getMeetingRoomName().equals(roomName)) {
                     filteredMeetings.add(meeting);
                 }
             }
         }
 
         return filteredMeetings;
+    }
+
+    @Override
+    public List<String> getBookedRoomsForMeetings(){
+        List<String> bookedRoomsList = new ArrayList<>();
+        for (Meeting meeting : meetings) {
+            bookedRoomsList.add(meeting.getMeetingRoomName());
+        }
+        List<String> listDistinct = bookedRoomsList.stream().distinct().collect(Collectors.toList());
+        return listDistinct;
     }
 }

@@ -10,11 +10,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 
 import com.example.mareu.R;
 import com.example.mareu.controllers.fragments.MeetingFragment;
+import com.example.mareu.di.DI;
+import com.example.mareu.model.MeetingRoom;
+import com.example.mareu.service.MeetingApiService;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,7 +34,8 @@ public class MainActivity extends AppCompatActivity {
     private MeetingFragment meetingFragment;
 
     @BindView(R.id.floatingActionButton) FloatingActionButton mFloatingActionButton;
-
+    private Spinner mDialogRoomsSpinner;
+    private List<String> bookedRoomsNames;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +85,13 @@ public class MainActivity extends AppCompatActivity {
         dialogBuilder.setView(dialogView);
         //finally creating the alert dialog and displaying it
         AlertDialog alertDialog = dialogBuilder.create();
+        alertDialog.show();
 
+        //
+        mDialogRoomsSpinner = (Spinner) alertDialog.findViewById(R.id.dialog_rooms_spinner);
+        configureRoomSpinner();
+
+        //
         Button mDialogCancelBtn = (Button) alertDialog.findViewById(R.id.dialog_cancel_button);
         mDialogCancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //
         Button mDialogConfirmBtn = (Button) alertDialog.findViewById(R.id.dialog_confirm_button);
         mDialogConfirmBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,7 +109,30 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        alertDialog.show();
+    }
+
+    public void configureRoomSpinner() {
+
+        MeetingApiService mApiService = DI.getMeetingApiService();
+        bookedRoomsNames = mApiService.getBookedRoomsForMeetings();
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, bookedRoomsNames);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mDialogRoomsSpinner.setAdapter(adapter);
+        mDialogRoomsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id)
+            {
+                Object item = parent.getItemAtPosition(pos);
+
+                System.out.println("it works...   ");
+
+            }
+
+            public void onNothingSelected(AdapterView<?> parent)
+            {
+
+            }
+        });
     }
 
 

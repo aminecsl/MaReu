@@ -35,6 +35,11 @@ public interface MeetingApiService {
      * @params date, room
      */
 
-    List<Meeting>  getFilteredMeetingsList(String date, MeetingRoom room);
+    List<Meeting>  getFilteredMeetingsList(String date, String roomName);
+
+
+    List<String> getBookedRoomsForMeetings();
+
+    //List<String> getAllMeetingsDates();
 
 }
