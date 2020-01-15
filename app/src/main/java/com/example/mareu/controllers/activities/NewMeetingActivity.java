@@ -7,6 +7,8 @@ import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -32,21 +34,21 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class NewMeetingActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    @BindView(R.id.activity_meeting_emails_input) public EditText mEmailsInput;
-    @BindView(R.id.activity_meeting_add_chip_btn) public Button mAddChipTagBtn;
-    @BindView(R.id.activity_meeting_chip_group) public ChipGroup mChipGroup;
-    @BindView(R.id.save_new_meeting_btn) public Button mSaveNewMeetingBtn;
-    @BindView(R.id.new_meeting_subject_input) public EditText mSubjectInput;
-    @BindView(R.id.new_meeting_date_input) public EditText mDateInput;
-    @BindView(R.id.new_meeting_time_input) public EditText mTimeInput;
-    @BindView(R.id.rooms_spinner) public Spinner mSpinner;
+    @BindView(R.id.activity_meeting_emails_input) EditText mEmailsInput;
+    @BindView(R.id.activity_meeting_add_chip_btn) Button mAddChipTagBtn;
+    @BindView(R.id.activity_meeting_chip_group) ChipGroup mChipGroup;
+    @BindView(R.id.new_meeting_subject_input) EditText mSubjectInput;
+    @BindView(R.id.new_meeting_date_input) EditText mDateInput;
+    @BindView(R.id.new_meeting_time_input) EditText mTimeInput;
+    @BindView(R.id.rooms_spinner) Spinner mSpinner;
 
     private List<MeetingRoom> mMeetingRoomsList = FakeApiServiceGenerator.MEETING_ROOMS;
-    List<String> roomsNames = new ArrayList<>();
-    MeetingRoom chosenRoom;
+    private List<String> roomsNames = new ArrayList<>();
+    private MeetingRoom chosenRoom;
 
 
     @Override
@@ -55,39 +57,11 @@ public class NewMeetingActivity extends AppCompatActivity implements AdapterView
         setContentView(R.layout.activity_new_meeting);
         ButterKnife.bind(this);
 
-        mDateInput.setInputType(InputType.TYPE_NULL);
-        mDateInput.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setMeetingDate();
-            }
-        });
-
-        mTimeInput.setInputType(InputType.TYPE_NULL);
-        mTimeInput.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setMeetingTime();
-            }
-        });
-
-        mAddChipTagBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                displayChipTag();
-            }
-        });
-
         configureAndShowRoomSpinner();
 
-        mSaveNewMeetingBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                addNewMeeting();
-            }
-        });
     }
 
+    @OnClick (R.id.new_meeting_date_input)
     public void setMeetingDate() {
         final Calendar calendar = Calendar.getInstance();
         int day = calendar.get(Calendar.DAY_OF_MONTH);
@@ -113,6 +87,7 @@ public class NewMeetingActivity extends AppCompatActivity implements AdapterView
         datePicker.show();
     }
 
+    @OnClick (R.id.new_meeting_time_input)
     public void setMeetingTime() {
         final Calendar cldr = Calendar.getInstance();
         int hour = cldr.get(Calendar.HOUR_OF_DAY);
@@ -135,6 +110,7 @@ public class NewMeetingActivity extends AppCompatActivity implements AdapterView
         timePicker.show();
     }
 
+    @OnClick (R.id.activity_meeting_add_chip_btn)
     public void displayChipTag(){
         String chipTag = mEmailsInput.getText().toString();
         if (isValidEmail(chipTag)) {
@@ -154,6 +130,12 @@ public class NewMeetingActivity extends AppCompatActivity implements AdapterView
         }
     }
 
+    public boolean isValidEmail(String email) {
+        String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+        return email.matches(regex);
+    }
+
+
     public void configureAndShowRoomSpinner() {
 
         for (MeetingRoom room : mMeetingRoomsList) {
@@ -165,7 +147,6 @@ public class NewMeetingActivity extends AppCompatActivity implements AdapterView
         mSpinner.setAdapter(adapter);
         mSpinner.setOnItemSelectedListener(this);
     }
-
     @Override
     public void onItemSelected(AdapterView<?> arg0, View arg1, int position,long id) {
         chosenRoom = mMeetingRoomsList.get(position);
@@ -177,6 +158,25 @@ public class NewMeetingActivity extends AppCompatActivity implements AdapterView
          */
     }
 
+
+    //Ajoute les entrées de notre menu à la toolbar
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_activity_new_meeting, menu);
+        return true;
+    }
+
+    //Gère le click sur une action de l'ActionBar
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.menu_activity_new_meeting_save:
+                addNewMeeting();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 
     public void addNewMeeting(){
         List<String> finalEmailsList = generateEmailsList();
@@ -199,11 +199,6 @@ public class NewMeetingActivity extends AppCompatActivity implements AdapterView
             emailsList.add(chip.getText().toString());
         }
         return emailsList;
-    }
-
-    public boolean isValidEmail(String email) {
-        String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
-        return email.matches(regex);
     }
 
 }

@@ -52,6 +52,10 @@ public class Meeting {
         mTime = time;
     }
 
+    public MeetingRoom getMeetingRoom() {
+        return mMeetingRoom;
+    }
+
     public int getMeetingRoomColor() {
         return mMeetingRoom.getRoomColor();
     }

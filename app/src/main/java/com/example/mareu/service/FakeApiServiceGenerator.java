@@ -1,9 +1,7 @@
 package com.example.mareu.service;
 
-import com.example.mareu.model.Meeting;
 import com.example.mareu.model.MeetingRoom;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -28,7 +26,7 @@ public abstract class FakeApiServiceGenerator {
     );
 
 
-
+    /*
     static List<Meeting> generateMeetings() {
         return new ArrayList<>(FAKE_MEETINGS);
     }
@@ -89,5 +87,6 @@ public abstract class FakeApiServiceGenerator {
                             "etienne@lamzone.com",
                             "herve@lamzone.com")
             )
-    );
+    );*/
+
 }

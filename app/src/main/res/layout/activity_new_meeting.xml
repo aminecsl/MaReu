@@ -8,152 +8,133 @@
     android:fillViewport="true"
     tools:context=".controllers.activities.NewMeetingActivity">
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/root_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
-
-        <RelativeLayout
-            android:id="@+id/root_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fitsSystemWindows="true">
-
-            <LinearLayout
-                android:id="@+id/subject_container"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Sujet de la réunion :"
-                    android:textSize="20sp"/>
-
-                <EditText
-                    android:id="@+id/new_meeting_subject_input"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Saisir le sujet..."/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/date_container"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_below="@id/subject_container">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Date :"
-                    android:textSize="20sp"/>
-
-                <EditText
-                    android:id="@+id/new_meeting_date_input"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:focusable="false"
-                    android:hint="Choisir la date..."/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/time_container"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_below="@id/date_container">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Heure :"
-                    android:textSize="20sp"/>
-
-                <EditText
-                    android:id="@+id/new_meeting_time_input"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:focusable="false"
-                    android:hint="Choisir l'heure..."/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/emails_container"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_below="@id/time_container">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Participants :"
-                    android:textSize="20sp"/>
-
-                <EditText
-                    android:id="@+id/activity_meeting_emails_input"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Saisir un nouvel email et ajouter" />
-
-                <Button
-                    android:id="@+id/activity_meeting_add_chip_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Ajouter" />
-
-                <com.google.android.material.chip.ChipGroup
-                    android:id="@+id/activity_meeting_chip_group"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                </com.google.android.material.chip.ChipGroup>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/spinner_container"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_below="@id/emails_container">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Salle de réunion :"
-                    android:textSize="20sp"/>
-
-                <Spinner
-                    android:id="@+id/rooms_spinner"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-            </LinearLayout>
-
-        </RelativeLayout>
+        android:padding="16dp"
+        android:fitsSystemWindows="true">
 
         <LinearLayout
+            android:id="@+id/subject_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <Button
-                android:id="@+id/save_new_meeting_btn"
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:text="Enregistrer"/>
+                android:text="Sujet de la réunion :"
+                android:textSize="20sp"/>
+
+            <EditText
+                android:id="@+id/new_meeting_subject_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Saisir le sujet..."/>
 
         </LinearLayout>
 
-    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/date_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_below="@id/subject_container">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Date :"
+                android:textSize="20sp"/>
+
+            <EditText
+                android:id="@+id/new_meeting_date_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:hint="Choisir la date..."/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/time_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_below="@id/date_container">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Heure :"
+                android:textSize="20sp"/>
+
+            <EditText
+                android:id="@+id/new_meeting_time_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:hint="Choisir l'heure..."/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/emails_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_below="@id/time_container">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Participants :"
+                android:textSize="20sp"/>
+
+            <EditText
+                android:id="@+id/activity_meeting_emails_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:hint="Saisir un nouvel email et ajouter" />
+
+            <Button
+                android:id="@+id/activity_meeting_add_chip_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ajouter" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/activity_meeting_chip_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </com.google.android.material.chip.ChipGroup>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/spinner_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_below="@id/emails_container">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Salle de réunion :"
+                android:textSize="20sp"/>
+
+            <Spinner
+                android:id="@+id/rooms_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
 
 </ScrollView>

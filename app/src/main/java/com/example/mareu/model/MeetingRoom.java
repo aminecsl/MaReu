@@ -2,6 +2,8 @@ package com.example.mareu.model;
 
 import android.graphics.Color;
 
+import java.util.Objects;
+
 /**
  * Created by Amine K. on 08/01/20.
  */
@@ -83,5 +85,20 @@ public class MeetingRoom {
                 ", mRoomName='" + mRoomName + '\'' +
                 ", mRoomColor=" + mRoomColor +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MeetingRoom that = (MeetingRoom) o;
+        return mRoomNumber == that.mRoomNumber &&
+                mRoomColor == that.mRoomColor &&
+                Objects.equals(mRoomName, that.mRoomName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(mRoomNumber, mRoomName, mRoomColor);
     }
 }

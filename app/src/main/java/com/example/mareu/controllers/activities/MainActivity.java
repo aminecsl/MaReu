@@ -1,12 +1,16 @@
 package com.example.mareu.controllers.activities;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.mareu.R;
 import com.example.mareu.controllers.fragments.MeetingFragment;
@@ -14,13 +18,14 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity {
 
 
     private MeetingFragment meetingFragment;
 
-    @BindView(R.id.floatingActionButton) public FloatingActionButton mFloatingActionButton;
+    @BindView(R.id.floatingActionButton) FloatingActionButton mFloatingActionButton;
 
 
     @Override
@@ -28,15 +33,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        this.configureAndShowMainFragment();
 
-        mFloatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent (MainActivity.this, NewMeetingActivity.class);
-                startActivity(intent);
-            }
-        });
+        configureAndShowMainFragment();
+
+    }
+
+    @OnClick (R.id.floatingActionButton)
+    public void openNewMeetingActivity(){
+        Intent intent = new Intent (MainActivity.this, NewMeetingActivity.class);
+        startActivity(intent);
     }
 
 
@@ -52,11 +57,43 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.menu_activity_main_filter:
-                // TODO : code à executer
+                showCustomDialog();
                 return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void showCustomDialog() {
+
+        //before inflating the custom alert dialog layout, we will get the current activity viewgroup
+        ViewGroup viewGroup = findViewById(android.R.id.content);
+        //then we will inflate the custom alert dialog xml that we created
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.activity_new_meeting_filters_dialog, viewGroup, false);
+        //Now we need an AlertDialog.Builder object
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        //setting the view of the builder to our custom view that we already inflated
+        dialogBuilder.setView(dialogView);
+        //finally creating the alert dialog and displaying it
+        AlertDialog alertDialog = dialogBuilder.create();
+
+        Button mDialogCancelBtn = (Button) alertDialog.findViewById(R.id.dialog_cancel_button);
+        mDialogCancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
+
+        Button mDialogConfirmBtn = (Button) alertDialog.findViewById(R.id.dialog_confirm_button);
+        mDialogConfirmBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        alertDialog.show();
     }
 
 
