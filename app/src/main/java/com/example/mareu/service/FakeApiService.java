@@ -57,6 +57,16 @@ public class FakeApiService implements MeetingApiService {
     }
 
     @Override
+    public List<String> getAllMeetingsDates() {
+        List<String> plannedMeetingDatesList = new ArrayList<>();
+        for (Meeting meeting : meetings) {
+            plannedMeetingDatesList.add(meeting.getDate());
+        }
+        List<String> listDistinct = plannedMeetingDatesList.stream().distinct().collect(Collectors.toList());
+        return listDistinct;
+    }
+
+    @Override
     public List<String> getBookedRoomsForMeetings(){
         List<String> bookedRoomsList = new ArrayList<>();
         for (Meeting meeting : meetings) {

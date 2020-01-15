@@ -35,7 +35,11 @@ public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.floatingActionButton) FloatingActionButton mFloatingActionButton;
     private Spinner mDialogRoomsSpinner;
+    private Spinner mDialogDatesSpinner;
+    private List<String> plannedMeetingDates;
     private List<String> bookedRoomsNames;
+    private String filteredDate;
+    private String filteredRoom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +92,10 @@ public class MainActivity extends AppCompatActivity {
         alertDialog.show();
 
         //
+        mDialogDatesSpinner = (Spinner) alertDialog.findViewById(R.id.dialog_dates_spinner);
+        configureDateSpinner();
+
+        //
         mDialogRoomsSpinner = (Spinner) alertDialog.findViewById(R.id.dialog_rooms_spinner);
         configureRoomSpinner();
 
@@ -111,6 +119,30 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void configureDateSpinner() {
+
+        MeetingApiService mApiService = DI.getMeetingApiService();
+        plannedMeetingDates = mApiService.getAllMeetingsDates();
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, plannedMeetingDates);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mDialogDatesSpinner.setAdapter(adapter);
+        mDialogDatesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id)
+            {
+                Object item = parent.getItemAtPosition(pos);
+
+                System.out.println("Dates spinner works...   ");
+
+            }
+
+            public void onNothingSelected(AdapterView<?> parent)
+            {
+
+            }
+        });
+    }
+
     public void configureRoomSpinner() {
 
         MeetingApiService mApiService = DI.getMeetingApiService();
@@ -124,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
             {
                 Object item = parent.getItemAtPosition(pos);
 
-                System.out.println("it works...   ");
+                System.out.println("Rooms spinner works...   ");
 
             }
 

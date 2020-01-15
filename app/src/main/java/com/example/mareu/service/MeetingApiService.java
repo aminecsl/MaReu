@@ -40,6 +40,6 @@ public interface MeetingApiService {
 
     List<String> getBookedRoomsForMeetings();
 
-    //List<String> getAllMeetingsDates();
+    List<String> getAllMeetingsDates();
 
 }
