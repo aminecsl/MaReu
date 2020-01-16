@@ -1,6 +1,5 @@
 package com.example.mareu.controllers.fragments;
 
-
 import android.content.Context;
 import android.os.Bundle;
 
@@ -17,6 +16,7 @@ import com.example.mareu.R;
 import com.example.mareu.controllers.adapters.MeetingsRecyclerViewAdapter;
 import com.example.mareu.di.DI;
 import com.example.mareu.events.DeleteMeetingEvent;
+import com.example.mareu.events.RefreshFilteredListEvent;
 import com.example.mareu.model.Meeting;
 import com.example.mareu.service.MeetingApiService;
 
@@ -30,9 +30,11 @@ import java.util.List;
  */
 public class MeetingFragment extends Fragment {
 
+
     private MeetingApiService mApiService;
-    private List<Meeting> mMeetings;
     private RecyclerView mRecyclerView;
+    private String dateFiltered;
+    private String roomFiltered;
 
 
     public MeetingFragment() {
@@ -40,7 +42,7 @@ public class MeetingFragment extends Fragment {
     }
 
 
-    public static MeetingFragment newInstance() {
+    public static MeetingFragment newInstance(String filteredDate, String filteredRoom) {
         MeetingFragment fragment = new MeetingFragment();
         return fragment;
     }
@@ -61,6 +63,7 @@ public class MeetingFragment extends Fragment {
         mRecyclerView = (RecyclerView) view;
         mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
+
         return view;
     }
 
@@ -77,7 +80,15 @@ public class MeetingFragment extends Fragment {
      */
     private void initList() {
 
-        mMeetings = mApiService.getMeetings();
+        List<Meeting> mMeetings;
+
+        if (dateFiltered != null && roomFiltered != null) {
+
+            mMeetings = mApiService.getFilteredMeetingsList(dateFiltered, roomFiltered);
+        }else {
+            mMeetings = mApiService.getMeetings();
+        }
+
         mRecyclerView.setAdapter(new MeetingsRecyclerViewAdapter(mMeetings));
     }
 
@@ -99,6 +110,14 @@ public class MeetingFragment extends Fragment {
     public void onDeleteMeeting(DeleteMeetingEvent event) {
 
         mApiService.deleteMeeting(event.meeting);
+        initList();
+    }
+
+    @Subscribe
+    public void onRefreshFilteredList(RefreshFilteredListEvent event) {
+
+        dateFiltered = event.getDate();
+        roomFiltered = event.getRoom();
         initList();
     }
 

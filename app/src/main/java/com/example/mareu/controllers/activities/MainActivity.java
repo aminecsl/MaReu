@@ -18,9 +18,12 @@ import android.widget.Spinner;
 import com.example.mareu.R;
 import com.example.mareu.controllers.fragments.MeetingFragment;
 import com.example.mareu.di.DI;
+import com.example.mareu.events.RefreshFilteredListEvent;
 import com.example.mareu.model.MeetingRoom;
 import com.example.mareu.service.MeetingApiService;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
@@ -31,15 +34,13 @@ import butterknife.OnClick;
 public class MainActivity extends AppCompatActivity {
 
 
-    private MeetingFragment meetingFragment;
-
     @BindView(R.id.floatingActionButton) FloatingActionButton mFloatingActionButton;
+    private MeetingFragment meetingFragment;
     private Spinner mDialogRoomsSpinner;
     private Spinner mDialogDatesSpinner;
-    private List<String> plannedMeetingDates;
-    private List<String> bookedRoomsNames;
     private String filteredDate;
     private String filteredRoom;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //onClickListener sur le Floating Action Button grâce à ButterKnife
     @OnClick (R.id.floatingActionButton)
     public void openNewMeetingActivity(){
         Intent intent = new Intent (MainActivity.this, NewMeetingActivity.class);
@@ -65,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    //Gère le click sur une action de l'ActionBar
+    //Gère le click sur l'iône Filter de la toolbar
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
@@ -89,17 +91,15 @@ public class MainActivity extends AppCompatActivity {
         dialogBuilder.setView(dialogView);
         //finally creating the alert dialog and displaying it
         AlertDialog alertDialog = dialogBuilder.create();
+        //A bien placer avant pour pouvoir ensuite récupérer les vues positionnées dans l'AlertDialog
         alertDialog.show();
 
-        //
         mDialogDatesSpinner = (Spinner) alertDialog.findViewById(R.id.dialog_dates_spinner);
         configureDateSpinner();
 
-        //
         mDialogRoomsSpinner = (Spinner) alertDialog.findViewById(R.id.dialog_rooms_spinner);
         configureRoomSpinner();
 
-        //
         Button mDialogCancelBtn = (Button) alertDialog.findViewById(R.id.dialog_cancel_button);
         mDialogCancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,12 +108,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //
         Button mDialogConfirmBtn = (Button) alertDialog.findViewById(R.id.dialog_confirm_button);
         mDialogConfirmBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                EventBus.getDefault().post(new RefreshFilteredListEvent(filteredDate, filteredRoom));
+                alertDialog.dismiss();
             }
         });
 
@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
     public void configureDateSpinner() {
 
         MeetingApiService mApiService = DI.getMeetingApiService();
-        plannedMeetingDates = mApiService.getAllMeetingsDates();
+        List<String> plannedMeetingDates = mApiService.getAllMeetingsDates();
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, plannedMeetingDates);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -133,18 +133,23 @@ public class MainActivity extends AppCompatActivity {
                 filteredDate = plannedMeetingDates.get(pos);
 
             }
-
             public void onNothingSelected(AdapterView<?> parent)
             {
-
+                /*This automatic method may be used so that you can set which item will be selected given that the previous item is no
+                longer available. This is instead of letting the spinner automatically select the next item in the list. */
             }
         });
+        //Permet de positionner par défaut l'item précédemment choisi dans le spinner
+        if (filteredDate != null) {
+            int spinnerPosition = adapter.getPosition(filteredDate);
+            mDialogDatesSpinner.setSelection(spinnerPosition);
+        }
     }
 
     public void configureRoomSpinner() {
 
         MeetingApiService mApiService = DI.getMeetingApiService();
-        bookedRoomsNames = mApiService.getBookedRoomsForMeetings();
+        List<String> bookedRoomsNames = mApiService.getBookedRoomsForMeetings();
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, bookedRoomsNames);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -155,12 +160,17 @@ public class MainActivity extends AppCompatActivity {
                 filteredRoom = bookedRoomsNames.get(pos);
 
             }
-
             public void onNothingSelected(AdapterView<?> parent)
             {
-
+                /*This automatic method may be used so that you can set which item will be selected given that the previous item is no
+                longer available. This is instead of letting the spinner automatically select the next item in the list. */
             }
         });
+        //Permet de positionner par défaut l'item précédemment choisi dans le spinner
+        if (filteredRoom != null) {
+            int spinnerPosition = adapter.getPosition(filteredRoom);
+            mDialogRoomsSpinner.setSelection(spinnerPosition);
+        }
     }
 
 
@@ -177,5 +187,4 @@ public class MainActivity extends AppCompatActivity {
                     .commit();
         }
     }
-
 }
