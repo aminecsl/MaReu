@@ -43,7 +43,6 @@ public class FakeApiService implements MeetingApiService {
 
             return meetings;
         }
-
         if (date != "toutes dates" && roomName != "toutes salles") {
 
             for (Meeting meeting : meetings) {
@@ -52,7 +51,6 @@ public class FakeApiService implements MeetingApiService {
                 }
             }
         }
-
         if ((date == "toutes dates" && roomName != "toutes salles") || (date != "toutes dates" && roomName == "toutes salles")) {
 
             for (Meeting meeting : meetings) {
@@ -68,6 +66,7 @@ public class FakeApiService implements MeetingApiService {
     //Permet au spinner Dates du filtre de récupérer une liste contenant "toutes dates + une unique occurence des dates de réunions prévues"
     @Override
     public List<String> getAllMeetingsDates() {
+
         List<String> plannedMeetingDatesList = new ArrayList<>();
         for (Meeting meeting : meetings) {
             plannedMeetingDatesList.add(meeting.getDate());
@@ -80,6 +79,7 @@ public class FakeApiService implements MeetingApiService {
     //Permet au spinner Salles du filtre de récupérer une liste contenant "toutes salles + une unique occurence des salles de réunions prévus"
     @Override
     public List<String> getBookedRoomsForMeetings(){
+
         List<String> bookedRoomsList = new ArrayList<>();
         for (Meeting meeting : meetings) {
             bookedRoomsList.add(meeting.getMeetingRoomName());

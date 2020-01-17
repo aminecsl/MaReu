@@ -136,7 +136,8 @@ public class MainActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent)
             {
                 /*This automatic method may be used so that you can set which item will be selected given that the previous item is no
-                longer available. This is instead of letting the spinner automatically select the next item in the list. */
+                 *longer available. This is instead of letting the spinner automatically select the next item in the list.
+                 */
             }
         });
         //Permet de positionner par défaut l'item précédemment choisi dans le spinner
@@ -163,7 +164,8 @@ public class MainActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent)
             {
                 /*This automatic method may be used so that you can set which item will be selected given that the previous item is no
-                longer available. This is instead of letting the spinner automatically select the next item in the list. */
+                 *longer available. This is instead of letting the spinner automatically select the next item in the list.
+                 */
             }
         });
         //Permet de positionner par défaut l'item précédemment choisi dans le spinner

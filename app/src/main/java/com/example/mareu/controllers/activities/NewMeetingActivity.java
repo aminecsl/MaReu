@@ -126,7 +126,7 @@ public class NewMeetingActivity extends AppCompatActivity implements AdapterView
                 }
             });
         }else {
-            Toast.makeText(this, "Email non conforme", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Email non conforme\nEx: abc123@gmail.com\nPas d'espace à la fin", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -153,8 +153,8 @@ public class NewMeetingActivity extends AppCompatActivity implements AdapterView
     }
     @Override
     public void onNothingSelected(AdapterView<?> arg0) {
-        /*
-         *Custom Code
+        /*This automatic method may be used so that you can set which item will be selected given that the previous item is no
+         *longer available. This is instead of letting the spinner automatically select the next item in the list.
          */
     }
 
@@ -179,17 +179,24 @@ public class NewMeetingActivity extends AppCompatActivity implements AdapterView
     }
 
     public void addNewMeeting(){
+        String date = mDateInput.getText().toString();
+        String time = mTimeInput.getText().toString();
+        String subject = mSubjectInput.getText().toString();
         List<String> finalEmailsList = generateEmailsList();
-        Meeting newMeeting = new Meeting(
-                chosenRoom,
-                mDateInput.getText().toString(),
-                mTimeInput.getText().toString(),
-                mSubjectInput.getText().toString(),
-                finalEmailsList
-        );
-        MeetingApiService mApiService = DI.getMeetingApiService();
-        mApiService.addMeeting(newMeeting);
-        finish();
+        if (date.equals("") || time.equals("") || subject.equals("") || finalEmailsList.isEmpty() ) {
+            Toast.makeText(this, "Renseignez tous les champs", Toast.LENGTH_SHORT).show();
+        }else {
+            Meeting newMeeting = new Meeting(
+                    chosenRoom,
+                    date,
+                    time,
+                    subject,
+                    finalEmailsList
+            );
+            MeetingApiService mApiService = DI.getMeetingApiService();
+            mApiService.addMeeting(newMeeting);
+            finish();
+        }
     }
 
     public List<String> generateEmailsList(){
