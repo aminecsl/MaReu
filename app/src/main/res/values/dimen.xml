@@ -17,5 +17,15 @@
     <dimen name="central_text_container_second_line_textSize">14sp</dimen>
 
     <!--activity_new_meeting -->
+    <dimen name="vertical_containers_spacing">16dp</dimen>
+    <dimen name="new_meeting_titles_size">20sp</dimen>
+    <dimen name="new_meeting_add_txt_size">14sp</dimen>
+
+    <!--filters alertdialog -->
+    <dimen name="alertdialog_vertical_spacing">12dp</dimen>
+    <dimen name="alertdialog_main_title_size">22sp</dimen>
+    <dimen name="alertdialog_spinner_title_size">20sp</dimen>
+    <dimen name="alertdialog_btn_txt_size">14sp</dimen>
+
 
 </resources>

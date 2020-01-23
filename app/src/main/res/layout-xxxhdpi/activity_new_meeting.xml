@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".controllers.activities.NewMeetingActivity">
+
+    <RelativeLayout
+        android:id="@+id/root_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:fitsSystemWindows="true">
+
+        <LinearLayout
+            android:id="@+id/subject_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/vertical_containers_spacing"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/new_meeting_subject_textview_title"
+                android:textSize="@dimen/new_meeting_titles_size"/>
+
+            <EditText
+                android:id="@+id/new_meeting_subject_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/new_meeting_subject_edittext_hint"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/date_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="@dimen/vertical_containers_spacing"
+            android:layout_below="@id/subject_container">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/new_meeting_date_textview_title"
+                android:textSize="@dimen/new_meeting_titles_size"/>
+
+            <EditText
+                android:id="@+id/new_meeting_date_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:hint="@string/new_meeting_date_edittext_hint"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/time_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="@dimen/vertical_containers_spacing"
+            android:layout_below="@id/date_container">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/new_meeting_time_textview_title"
+                android:textSize="@dimen/new_meeting_titles_size"/>
+
+            <EditText
+                android:id="@+id/new_meeting_time_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:hint="@string/new_meeting_time_edittext_hint"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/emails_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="@dimen/vertical_containers_spacing"
+            android:layout_below="@id/time_container">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/new_meeting_contacts_textview_title"
+                android:textSize="@dimen/new_meeting_titles_size"/>
+
+            <EditText
+                android:id="@+id/activity_meeting_emails_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:hint="@string/new_meeting_contacts_edittext_hint" />
+
+            <Button
+                android:id="@+id/activity_meeting_add_chip_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/new_meeting_add_txt_size"
+                android:text="@string/new_meeting_add_chip_btn_txt" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/activity_meeting_chip_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </com.google.android.material.chip.ChipGroup>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/spinner_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_below="@id/emails_container">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/new_meeting_rooms_textview_title"
+                android:textSize="@dimen/new_meeting_titles_size"/>
+
+            <Spinner
+                android:id="@+id/rooms_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</ScrollView>

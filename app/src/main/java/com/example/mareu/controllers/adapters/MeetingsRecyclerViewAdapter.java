@@ -20,6 +20,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * Created by Amine K. on 07/01/20.
  */
@@ -53,7 +55,7 @@ public class MeetingsRecyclerViewAdapter extends RecyclerView.Adapter<MeetingsRe
         holder.mMeetingSubject.setText(meeting.getSubject());
         holder.mMeetingDate.setText(meeting.getDate());
         holder.mMeetingTime.setText(meeting.getTime());
-        holder.mMeetingEmails.setText(String.join(", ", meeting.getEmails()));
+        holder.mMeetingEmails.setText(StringUtils.join(meeting.getEmails(), ", "));
 
         ((GradientDrawable) holder.mMeetingIconRoom.getBackground()).setColor(meeting.getMeetingRoomColor());
 

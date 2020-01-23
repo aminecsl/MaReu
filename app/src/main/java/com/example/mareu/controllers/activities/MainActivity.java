@@ -19,8 +19,8 @@ import com.example.mareu.R;
 import com.example.mareu.controllers.fragments.MeetingFragment;
 import com.example.mareu.di.DI;
 import com.example.mareu.events.RefreshFilteredListEvent;
-import com.example.mareu.model.MeetingRoom;
 import com.example.mareu.service.MeetingApiService;
+import com.example.mareu.utils.MeetingsParser;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.greenrobot.eventbus.EventBus;
@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
     public void configureDateSpinner() {
 
         MeetingApiService mApiService = DI.getMeetingApiService();
-        List<String> plannedMeetingDates = mApiService.getAllMeetingsDates();
+        List<String> plannedMeetingDates = MeetingsParser.getAllMeetingsDates(mApiService.getMeetings());
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, plannedMeetingDates);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -150,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
     public void configureRoomSpinner() {
 
         MeetingApiService mApiService = DI.getMeetingApiService();
-        List<String> bookedRoomsNames = mApiService.getBookedRoomsForMeetings();
+        List<String> bookedRoomsNames = MeetingsParser.getBookedRoomsForMeetings(mApiService.getMeetings());
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, bookedRoomsNames);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
