@@ -1,0 +1,33 @@
+<resources>
+
+    <!--fragment_meeting -->
+    <dimen name="list_item_layout_marginTop">4dp</dimen>
+    <dimen name="list_item_layout_marginBottom">4dp</dimen>
+    <dimen name="list_item_paddingStart">8dp</dimen>
+    <dimen name="list_item_paddingEnd">8dp</dimen>
+
+    <dimen name="room_icon_layout_width">40dp</dimen>
+    <dimen name="room_icon_layout_height">40dp</dimen>
+    <dimen name="room_icon_textSize">15sp</dimen>
+
+    <dimen name="central_text_container_paddingStart">4dp</dimen>
+    <dimen name="central_text_container_first_line_textSize">8sp</dimen>
+    <dimen name="central_text_container_first_line_separator_marginStartEnd">2dp</dimen>
+
+    <dimen name="central_text_container_second_line_textSize">10sp</dimen>
+
+    <!--activity_new_meeting -->
+    <dimen name="vertical_containers_spacing">12dp</dimen>
+    <dimen name="new_meeting_titles_size">18sp</dimen>
+    <dimen name="new_meeting_add_txt_size">12sp</dimen>
+
+    <!--filters alertdialog -->
+    <dimen name="alertdialog_vertical_spacing">10dp</dimen>
+    <dimen name="alertdialog_main_title_size">20sp</dimen>
+    <dimen name="alertdialog_spinner_title_size">18sp</dimen>
+    <dimen name="alertdialog_btn_txt_size">12sp</dimen>
+
+    <!--activity_main -->
+    <dimen name="fab_custom_size">40dp</dimen>
+
+</resources>

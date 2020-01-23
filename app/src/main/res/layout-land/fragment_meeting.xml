@@ -31,7 +31,7 @@
 
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_weight="5"
+            android:layout_weight="9"
             android:layout_height="match_parent"
             android:paddingStart="@dimen/central_text_container_paddingStart"
             android:paddingEnd="0dp"
@@ -105,7 +105,7 @@
                     android:textSize="@dimen/central_text_container_second_line_textSize"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:text="a.katache@gmail.coma.katache@gmail.coma.katache@gmail.com"/>
+                    android:text="a.katache@gmail.coma.katache@gmail.coma.katache@gmail.coma.katache@gmail.coma.katache@gmail.coma.katache@gmail.coma.katache@gmail.com"/>
 
             </LinearLayout>
 
@@ -114,8 +114,8 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.5"
-            android:gravity="end">
+            android:layout_weight="1"
+            android:gravity="center">
 
             <ImageButton
                 android:id="@+id/meeting_delete_btn"

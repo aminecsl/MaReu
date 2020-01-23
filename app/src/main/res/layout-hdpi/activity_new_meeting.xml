@@ -19,13 +19,14 @@
             android:id="@+id/subject_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/vertical_containers_spacing"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/new_meeting_subject_textview_title"
-                android:textSize="20sp"/>
+                android:textSize="@dimen/new_meeting_titles_size"/>
 
             <EditText
                 android:id="@+id/new_meeting_subject_input"
@@ -40,13 +41,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:layout_marginBottom="@dimen/vertical_containers_spacing"
             android:layout_below="@id/subject_container">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/new_meeting_date_textview_title"
-                android:textSize="20sp"/>
+                android:textSize="@dimen/new_meeting_titles_size"/>
 
             <EditText
                 android:id="@+id/new_meeting_date_input"
@@ -62,13 +64,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:layout_marginBottom="@dimen/vertical_containers_spacing"
             android:layout_below="@id/date_container">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/new_meeting_time_textview_title"
-                android:textSize="20sp"/>
+                android:textSize="@dimen/new_meeting_titles_size"/>
 
             <EditText
                 android:id="@+id/new_meeting_time_input"
@@ -84,13 +87,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:layout_marginBottom="@dimen/vertical_containers_spacing"
             android:layout_below="@id/time_container">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/new_meeting_contacts_textview_title"
-                android:textSize="20sp"/>
+                android:textSize="@dimen/new_meeting_titles_size"/>
 
             <EditText
                 android:id="@+id/activity_meeting_emails_input"
@@ -104,6 +108,7 @@
                 android:id="@+id/activity_meeting_add_chip_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="@dimen/new_meeting_add_txt_size"
                 android:text="@string/new_meeting_add_chip_btn_txt" />
 
             <com.google.android.material.chip.ChipGroup
@@ -126,7 +131,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/new_meeting_rooms_textview_title"
-                android:textSize="20sp"/>
+                android:textSize="@dimen/new_meeting_titles_size"/>
 
             <Spinner
                 android:id="@+id/rooms_spinner"

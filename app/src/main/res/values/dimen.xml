@@ -1,0 +1,21 @@
+<resources>
+
+    <!--fragment_meeting -->
+    <dimen name="list_item_layout_marginTop">8dp</dimen>
+    <dimen name="list_item_layout_marginBottom">8dp</dimen>
+    <dimen name="list_item_paddingStart">16dp</dimen>
+    <dimen name="list_item_paddingEnd">16dp</dimen>
+
+    <dimen name="room_icon_layout_width">50dp</dimen>
+    <dimen name="room_icon_layout_height">50dp</dimen>
+    <dimen name="room_icon_textSize">20sp</dimen>
+
+    <dimen name="central_text_container_paddingStart">8dp</dimen>
+    <dimen name="central_text_container_first_line_textSize">16sp</dimen>
+    <dimen name="central_text_container_first_line_separator_marginStartEnd">4dp</dimen>
+
+    <dimen name="central_text_container_second_line_textSize">14sp</dimen>
+
+    <!--activity_new_meeting -->
+
+</resources>

@@ -1,6 +1,32 @@
 <resources>
     <string name="app_name">MaReu</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="new_meeting_subject_textview_title">Sujet de la réunion :</string>
+    <string name="new_meeting_subject_edittext_hint">Saisir le sujet...</string>
+
+    <string name="new_meeting_date_textview_title">Date :</string>
+    <string name="new_meeting_date_edittext_hint">Choisir la date...</string>
+
+    <string name="new_meeting_time_textview_title">Heure :</string>
+    <string name="new_meeting_time_edittext_hint">Choisir l\'heure...</string>
+
+    <string name="new_meeting_contacts_textview_title">Participants :</string>
+    <string name="new_meeting_contacts_edittext_hint">Saisir un nouvel email et ajouter</string>
+
+    <string name="new_meeting_add_chip_btn_txt">Ajouter</string>
+
+    <string name="new_meeting_rooms_textview_title">Salle de réunion :</string>
+
+    <string name="alertdialog_box_title">Filtrer les réunions</string>
+
+    <string name="alertdialog_dates_spinner_title">Selectionner une date :</string>
+
+    <string name="alertdialog_rooms_spinner_title">Selectionner une salle :</string>
+
+    <string name="alertdialog_cancel_btn_txt">Annuler</string>
+
+    <string name="alertdialog_confirm_btn_txt">Filtrer</string>
+
+    <string name="alertdialog_dates_spinner_all_dates_item_txt">toutes dates</string>
+
 </resources>

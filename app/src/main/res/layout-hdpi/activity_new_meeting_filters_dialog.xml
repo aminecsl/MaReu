@@ -8,22 +8,23 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="22sp"
+        android:textSize="@dimen/alertdialog_main_title_size"
         android:textStyle="bold"
+        android:layout_marginBottom="@dimen/alertdialog_vertical_spacing"
         android:text="@string/alertdialog_box_title"/>
 
     <LinearLayout
         android:id="@+id/dialog_dates_spinner_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginBottom="@dimen/alertdialog_vertical_spacing"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/alertdialog_dates_spinner_title"
-            android:textSize="20sp"/>
+            android:textSize="@dimen/alertdialog_spinner_title_size"/>
 
         <Spinner
             android:id="@+id/dialog_dates_spinner"
@@ -36,14 +37,14 @@
         android:id="@+id/dialog_rooms_spinner_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginBottom="@dimen/alertdialog_vertical_spacing"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/alertdialog_rooms_spinner_title"
-            android:textSize="20sp"/>
+            android:textSize="@dimen/alertdialog_spinner_title_size"/>
 
         <Spinner
             android:id="@+id/dialog_rooms_spinner"
@@ -55,13 +56,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:gravity="end">
 
         <Button
             android:id="@+id/dialog_cancel_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="@dimen/alertdialog_btn_txt_size"
             android:text="@string/alertdialog_cancel_btn_txt"/>
 
         <Button
@@ -70,6 +71,8 @@
             android:minWidth="100dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
+            android:textSize="@dimen/alertdialog_btn_txt_size"
+
             android:text="@string/alertdialog_confirm_btn_txt"/>
 
     </LinearLayout>
