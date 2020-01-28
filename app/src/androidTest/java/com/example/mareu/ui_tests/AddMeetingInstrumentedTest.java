@@ -1,14 +1,17 @@
-package com.example.mareu;
+package com.example.mareu.ui_tests;
 
 import androidx.test.espresso.contrib.PickerActions;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
 
+import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.rule.ActivityTestRule;
 
+import com.example.mareu.R;
 import com.example.mareu.controllers.activities.MainActivity;
+import com.example.mareu.di.DI;
 import com.example.mareu.utils.RecyclerViewUtils;
 
 import org.hamcrest.Matchers;
@@ -35,13 +38,15 @@ import static org.junit.Assert.*;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 @RunWith(AndroidJUnit4.class)
-public class MeetingsListInstrumentedTest {
+public class AddMeetingInstrumentedTest {
 
 
     private MainActivity mMainActivity;
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule(MainActivity.class);
+
+    private int currentMeetingsSize;
 
     @Before
     public void setUp() {
@@ -51,11 +56,12 @@ public class MeetingsListInstrumentedTest {
 
     @Test
     public void checkIfRecyclerViewIsEmpty() {
-        onView(withId(R.id.meetings_rv)).check(new RecyclerViewUtils.ItemCount(0));
+        onView(ViewMatchers.withId(R.id.meetings_rv)).check(new RecyclerViewUtils.ItemCount(0));
     }
 
     @Test
     public void checkIfAddingNewMeetingIsWorking() {
+        currentMeetingsSize = DI.getMeetingApiService().getMeetings().size();
         // set date to 10 days ahead
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DATE, 10);
@@ -83,11 +89,7 @@ public class MeetingsListInstrumentedTest {
         onView(withId(R.id.activity_meeting_emails_input)).perform(scrollTo(), replaceText("abcd@gmail.com"));
         onView(withId(R.id.activity_meeting_add_chip_btn)).perform(scrollTo(), click());
         onView(withId(R.id.menu_activity_new_meeting_save)).perform(click());
-        onView(withId(R.id.meetings_rv)).check(new RecyclerViewUtils.ItemCount(1));
+        onView(withId(R.id.meetings_rv)).check(new RecyclerViewUtils.ItemCount(currentMeetingsSize + 1));
     }
 
-    @Test
-    public void checkIfRemovingMeetingIsWorking() {
-
-    }
 }
