@@ -27,8 +27,10 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.action.ViewActions.typeText;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.*;
 
@@ -90,6 +92,8 @@ public class AddMeetingInstrumentedTest {
         onView(withId(R.id.activity_meeting_add_chip_btn)).perform(scrollTo(), click());
         onView(withId(R.id.menu_activity_new_meeting_save)).perform(click());
         onView(withId(R.id.meetings_rv)).check(new RecyclerViewUtils.ItemCount(currentMeetingsSize + 1));
+        onView(ViewMatchers.withId(R.id.meeting_subject_txt)).check(matches(withText("Embauche")));
+        onView(ViewMatchers.withId(R.id.meeting_time_txt)).check(matches(withText("11:30")));
     }
 
 }

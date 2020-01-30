@@ -31,7 +31,6 @@ import static org.junit.Assert.assertThat;
 public class DeleteMeetingInstrumentedTest {
 
 
-    //private MainActivity mMainActivity;
     private MeetingApiService mApiService;
 
     @Rule
@@ -39,8 +38,6 @@ public class DeleteMeetingInstrumentedTest {
 
     @Before
     public void setUp() {
-        //mMainActivity = mActivityRule.getActivity();
-        //assertThat(mMainActivity, notNullValue());
 
         //Avant de lancer l'application et les tests nous ajoutons 2 réunions à notre API
         mApiService = DI.getMeetingApiService();

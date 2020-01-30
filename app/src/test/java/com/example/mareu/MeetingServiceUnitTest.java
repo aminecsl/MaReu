@@ -82,8 +82,9 @@ public class MeetingServiceUnitTest {
                         "carole@lamzone.com"));
         mService.addMeeting(mMeeting1);
         mService.addMeeting(mMeeting2);
-        List<Meeting> filteredMeeting = mService.getFilteredMeetingsList("03/02/2020", "b");
-        assertEquals(mMeeting2, filteredMeeting.get(0));
+        List<Meeting> filteredMeetings = mService.getFilteredMeetingsList("03/02/2020", "b");
+        assertTrue(filteredMeetings.size() == 1);
+        assertEquals(mMeeting2, filteredMeetings.get(0));
     }
 
 }

@@ -25,8 +25,6 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.*;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.junit.Assert.assertThat;
 
 /**
  * Created by Amine K. on 28/01/20.
@@ -35,7 +33,6 @@ import static org.junit.Assert.assertThat;
 @RunWith(AndroidJUnit4.class)
 public class FilterMeetingsInstrumentedTest {
 
-    //private MainActivity mMainActivity;
     private MeetingApiService mApiService;
 
     @Rule
@@ -43,8 +40,6 @@ public class FilterMeetingsInstrumentedTest {
 
     @Before
     public void setUp() {
-        //mMainActivity = mActivityRule.getActivity();
-        //assertThat(mMainActivity, notNullValue());
 
         //Avant de lancer l'application et les tests nous ajoutons 2 réunions à notre API
         mApiService = DI.getMeetingApiService();
